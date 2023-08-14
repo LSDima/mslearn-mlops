@@ -6,7 +6,7 @@ on:
       resource-group:
         description: 'Resource group'
         required: true
-      workspace_name:
+      workspace-name:
         description: 'Workspace name'
         required: true
 jobs:
