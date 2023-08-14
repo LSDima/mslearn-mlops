@@ -16,7 +16,6 @@ def main(args):
     # TO DO: enable autologging
     mlflow.autolog()
 
-
     # read data
     df = get_csvs_df(args.training_data)
 
@@ -67,6 +66,7 @@ def parse_args():
 
     # return args
     return args
+
 
 # run script
 if __name__ == "__main__":
