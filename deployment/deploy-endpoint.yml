@@ -2,5 +2,5 @@ $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.sch
 name: mlflow-deployment
 endpoint_name: churn-endpoint
 model: azureml:diabetes-model:1
-instance_type: Standard_E2a_v4
+instance_type: Standard_E4s_v3
 instance_count: 1
