@@ -20,11 +20,20 @@ jobs:
     - name: Run linting tests
       run: | 
         flake8 src/model/
+  job2:
+    name: unitTests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Use Python version 3.8
+      uses: actions/setup-python@v3
     - name: Install Pytest
       run: |
         pip install pytest
+    - name: Install mlflow
+      run: |
+        pip install mlflow
     - name: Run unit tests
       run: | 
         pytest tests/test_train.py
-
-
