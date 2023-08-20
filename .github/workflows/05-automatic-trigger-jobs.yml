@@ -16,9 +16,9 @@ jobs:
     - name: Azure login
       uses: azure/login@v1
       with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
+        credentials: ${{secrets.AZURE_CREDENTIALS}}
     - name: Submit job
-      run: az ml job create --file src/job.yml --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
+      run: az ml job create --file src/job.yml --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }} --stream
   production:
     needs: experiment
     runs-on: ubuntu-latest
@@ -30,7 +30,7 @@ jobs:
     - name: Azure login
       uses: azure/login@v1
       with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
+        credentials: ${{secrets.AZURE_CREDENTIALS}}
     - name: Submit job
       run: az ml job create --file src/production_job.yml --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
 
