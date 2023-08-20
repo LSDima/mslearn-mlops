@@ -2,13 +2,7 @@ name: Manually deploy the latest version of registered model
 
 on:
   workflow_dispatch:
-    inputs:
-      resource-group:
-        description: 'Resource group'
-        required: true
-      workspace-name:
-        description: 'Workspace name'
-        required: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
