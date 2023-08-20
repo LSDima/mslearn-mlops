@@ -1,0 +1,28 @@
+name: Manually deploy the latest version of registered model
+
+on:
+  workflow_dispatch:
+    inputs:
+      resource-group:
+        description: 'Resource group'
+        required: true
+      workspace-name:
+        description: 'Workspace name'
+        required: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Create endpoint
+      run: az ml online-endpoint create --name diabetes-mlflow --f ./deployment/create-endpoint.yml --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
+    - name: Deploy model
+      run:  az ml online-deployment create --name mlflow-deployment --endpoint diabetes-mlflow -f ./deployment/deploy-endpoint.yml --all-traffic --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
