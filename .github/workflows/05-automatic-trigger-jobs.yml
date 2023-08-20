@@ -6,6 +6,7 @@ on:
 jobs:
   experiment:
     runs-on: ubuntu-latest
+    environment: development
     steps:
     - name: Check out repo
       uses: actions/checkout@main
@@ -20,6 +21,7 @@ jobs:
   production:
     needs: experiment
     runs-on: ubuntu-latest
+    environment: production
     steps:
     - name: Check out repo
       uses: actions/checkout@main
